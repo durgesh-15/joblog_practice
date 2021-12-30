@@ -54532,36 +54532,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AdminComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AdminComponent.vue */ "./resources/js/components/AdminComponent.vue");
 
 
-var footer = {
-  template: "<div class='alert alert-primary'>Footer Component</div>"
-};
-var header = {
-  template: "<div class='alert alert-success'>Header Component</div>"
-};
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var routes = [{
-  path: '/footer',
-  component: footer
-}, {
-  path: '/header',
-  component: header
-}, {
   path: '/',
   redirect: 'login'
 }, {
   path: '/login',
   component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-  name: 'Login' // beforeEnter:(to ,from, next) => {
-  //     if(localStorage.getItem('token')){
-  //         next();
-  //     }else{
-  //         next('/login');
-  //     }
-  // }
-
+  name: 'Login'
 }, {
   path: '/register',
   component: _components_RegisterComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -54570,9 +54551,6 @@ var routes = [{
   path: '/admin',
   component: _components_AdminComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: 'Admin',
-  // beforeEnter:(to ,from, next) =>{
-  //     next('/login');
-  // }
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
       next();
