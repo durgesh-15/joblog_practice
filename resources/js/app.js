@@ -24,8 +24,14 @@ import router from './router';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-import app from './components/AppComponent';
+// import App from './components/AppComponent';
+import App from './components/App.vue';
 
+import Default from './layout/Default.vue'
+import Test from './layout/Test.vue'
+
+Vue.component('default-layout',Default);
+Vue.component('test-layout', Test);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,10 +40,6 @@ import app from './components/AppComponent';
  */
 
 new Vue({
-    el: '#app',
     router,
-    // bootstrap,
-    components:{
-        'App':app,
-    }
-});
+    render:h => h(App)
+}).$mount("#app");

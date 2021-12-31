@@ -2,7 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import LoginComponent from './components/LoginComponent.vue';
 import RegisterComponent from './components/RegisterComponent.vue';
-import AdminComponent from './components/AdminComponent.vue';
+// import AdminLayout from './components/AdminLayout.vue';
+import DashboardHomeComponent from './components/DashboardHomeComponent.vue';
+import TestComponent from './components/TestComponent.vue';
+import Default from './layout/Default.vue';
+
 
 Vue.use(VueRouter)
 
@@ -14,7 +18,8 @@ const routes = [
     {
         path:'/login',
         component:LoginComponent,
-        name:'Login',
+        // meta: { layout: 'no-default'},
+
     },
     {
         path:'/register',
@@ -23,16 +28,40 @@ const routes = [
     },
     {
         path:'/admin',
-        component:AdminComponent,
-        name:'Admin',
+        component:Default,
+        children: [
+            {
+                path:'/dashboard-home',
+                component:DashboardHomeComponent,
+                name:'DashboardHomeComponent'
+            },
+            {
+                path:'/test',
+                component:TestComponent,
+                name:'TestComponent'
+            },
+          ],
+        // meta: { layout: 'default'},
+
         beforeEnter:(to ,from, next) => {
-        if(localStorage.getItem('token')){
-            next();
-        }else{
-            next('/login');
+            if(localStorage.getItem('token')){
+                next();
+            }else{
+                next('/login');
+            }
         }
-    }
-    }
+    },
+    // {
+    //     path:'/dashboard-home',
+    //     component:DashboardHomeComponent,
+    //     name:'DashboardHomeComponent'
+    // },
+    // {
+    //     path:'/test',
+    //     component:TestComponent,
+    //     name:'TestComponent'
+    // }
+
 ]
 
 export default new VueRouter ({routes})
